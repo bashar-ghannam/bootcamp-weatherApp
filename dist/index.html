@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="search">
+      <input type="text" id="city-name" placeholder="City" />
+      <button type="button" id="search-btn">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="citiesWeather"></div>
+
+    <script type="text/x-handlebars-template" id="weather-template">
+      {{#each cities}}
+          <div class='weatherItem'>
+            <div class='weatherItem-btn'>
+              {{#if IsExistInDB}}
+                <button id='remove-btn'>
+                  -
+                </button>
+              {{else}}
+                <button id='add-btn'>
+                  +
+                </button>
+              {{/if}}
+            </div>
+            <div>
+              <div class='cityTemp'>{{temperature}} °C</div>
+              <div class='cityName'>{{name}}</div>
+            </div>
+            <div>
+              <div class='weatherIcon'><img
+                  src='http://openweathermap.org/img/wn/{{conditionPic}}@2x.png'
+                  alt='weather icon'/>
+              </div>
+              <div class='weatherCond'>{{condition}}</div>
+            </div>
+          </div>
+      {{/each}}
+    </script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="model.js"></script>
+    <script src="Render.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
